@@ -14,8 +14,8 @@ struct ProductCard: View{
         ZStack(alignment: .bottom){
             Image(product.image)
                 .resizable()
-                .cornerRadius(20)
-                .frame(width: 180)
+                .cornerRadius(0)
+                .frame(width: 250)
                 .scaledToFit()
             
             VStack(alignment:.leading){
@@ -23,7 +23,11 @@ struct ProductCard: View{
                     .bold()
                 
                 Text("\(product.price)$")
+                    .font(.caption)
             }
+            .padding()
+            .frame(width:180,alignment: .leading)
+           
         }
         .frame(width: 180, height:250)
         .shadow(radius:3)
