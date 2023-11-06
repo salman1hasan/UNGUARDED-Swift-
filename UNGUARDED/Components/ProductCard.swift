@@ -20,20 +20,15 @@ struct ProductCard: View{
                     .scaledToFit()
                 
                 VStack(alignment:.leading){
-                    Text(product.name)
-                        .bold()
                     
-                    Text("\(product.price)$")
-                        .font(.caption)
                 }
-                .padding()
                 .frame(width:180,alignment: .leading)
                 .background(.ultraThinMaterial)
-                .cornerRadius(20)
+                .cornerRadius(10)
                 
             }
             .frame(width: 180, height:250)
-            .shadow(radius:3)
+            .shadow(radius:1)
             
             Button{
                 print("Added to cart!")
@@ -42,7 +37,7 @@ struct ProductCard: View{
                     .padding(10)
                     .foregroundColor(.white)
                     .background(.black)
-                    .cornerRadius(50)
+                    .cornerRadius(10)
                     .padding()
             }
         }
