@@ -1,23 +1,36 @@
 //
 //  ContentView.swift
-//  UNGUARDED
+//  SweaterShopApp
 //
-//  Created by Salman Hasan on 11/5/23.
+//  Created by Stephanie Diep on 2021-12-23.
 //
 
 import SwiftUI
 
 struct ContentView: View {
-var columns=[GridItem(.adaptive(minimum:160),spacing: 20)]
+    @StateObject var cartManager = CartManager()
+    var columns = [GridItem(.adaptive(minimum: 200), spacing: 50)]
     
     var body: some View {
-        NavigationView{
-            HStack{
-                ForEach(productList, id: \.id){ product in
-                    ProductCard(product: product)
+    NavigationView {
+    ScrollView {
+        LazyVGrid(columns: columns, spacing: 10) {
+            ForEach(productList, id: \.id) { product in
+                ProductCard(product: product)
+                    .environmentObject(cartManager)
+                    }
+                }
+                .padding()
+            }
+            .toolbar {
+                NavigationLink{
+                    CartView()
+                        .environmentObject(cartManager)
+                }label:{
+                    CartButton(numberOfProducts:cartManager.products.count)
+                    
                 }
             }
-            .navigationTitle(Text("UNGUARDED"))
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
