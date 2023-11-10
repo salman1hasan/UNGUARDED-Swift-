@@ -12,24 +12,19 @@ struct HomeView: View {
     
 var body: some View {
     ZStack {
-        Color("ColorBlack")
-            .ignoresSafeArea(.all, edges: .all)
-               
         VStack(spacing: 20) {
             Spacer()
             
             NavigationView {
                 ZStack{
-                    Color("ColorBlack")
+                    Color("ColorWhite")
                         .ignoresSafeArea(.all, edges: .all)
                 
-                NavigationLink(destination:HomeView(), label:{
                     Image("QRCode")
                         .resizable()
                         .scaledToFit()
                         .opacity(isAnimating ? 1 : 0)
                         .animation(.easeOut(duration: 0.5), value: isAnimating)
-                })
             }
     }
       ZStack{
