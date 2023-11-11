@@ -1,3 +1,10 @@
+//
+//  OnboardingView.swift
+//  UG
+//
+//  Created by Salman Hasan on 11/7/23.
+//
+
 import SwiftUI
 
 struct HomeView: View {
@@ -12,6 +19,9 @@ struct HomeView: View {
     
 var body: some View {
     ZStack {
+        Color("ColorBlack")
+            .ignoresSafeArea(.all, edges: .all)
+               
         VStack(spacing: 20) {
             Spacer()
             
@@ -20,13 +30,16 @@ var body: some View {
                     Color("ColorWhite")
                         .ignoresSafeArea(.all, edges: .all)
                 
+                NavigationLink(destination:HomeView().navigationBarBackButtonHidden(true), label:{
                     Image("QRCode")
                         .resizable()
                         .scaledToFit()
                         .opacity(isAnimating ? 1 : 0)
                         .animation(.easeOut(duration: 0.5), value: isAnimating)
+                })
             }
     }
+    .navigationViewStyle(.stack)
       ZStack{
               }
              }
@@ -35,10 +48,11 @@ var body: some View {
                isAnimating = true
            })
        }
+    
 }
         
 struct HomeView_Previews: PreviewProvider {
   static var previews: some View {
-      HomeView()
+    HomeView()
   }
 }
