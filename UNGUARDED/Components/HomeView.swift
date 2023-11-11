@@ -30,7 +30,7 @@ var body: some View {
                     Color("ColorWhite")
                         .ignoresSafeArea(.all, edges: .all)
                 
-                NavigationLink(destination:HomeView().navigationBarBackButtonHidden(true), label:{
+                NavigationLink(destination:PinchView().navigationBarBackButtonHidden(true), label:{
                     Image("QRCode")
                         .resizable()
                         .scaledToFit()
