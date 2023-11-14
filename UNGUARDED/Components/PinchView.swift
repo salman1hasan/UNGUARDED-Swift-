@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct PinchView: View {
     @State private var isAnimating: Bool = false
     @State private var imageScale: CGFloat = 1
     @State private var imageOffset: CGSize = .zero
@@ -22,45 +22,42 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView{
+            
           ZStack{
             Color.clear
-              
-    Link(destination: URL(string: "https://www.unguarded.com")!, label: {
-                Image("QRCode")
-            .resizable()
-            .aspectRatio(contentMode:.fit)
-            .cornerRadius(8)
-            .padding()
-            .opacity(isAnimating ? 1:0)
-            .offset(x: imageOffset.width, y:
-            imageOffset.height)
-            .scaleEffect(imageScale)
-            .onTapGesture(count:2, perform: {
-            if imageScale == 1 {
-            withAnimation(.spring()){
-            imageScale = 5
+            Image("UNGUARDEDSticker")
+                .resizable()
+                .aspectRatio(contentMode:.fit)
+                .cornerRadius(8)
+                .padding()
+                .opacity(isAnimating ? 1:0)
+                .offset(x: imageOffset.width, y:
+                imageOffset.height)
+                .scaleEffect(imageScale)
+                .onTapGesture(count:2, perform: {
+                if imageScale == 1 {
+                withAnimation(.spring()){
+                imageScale = 5
+                }
+                }else{
+                withAnimation(.spring()){
+                resetImageState()
+                }
+                }
+                })
+                .gesture(
+                DragGesture()
+                .onChanged { value in
+                withAnimation(.linear(duration: 1)){
+                imageOffset = value.translation
+                }
+                }
+                .onEnded { _ in
+                if imageScale <= 1 {
+                resetImageState()
+                }
             }
-            }else{
-            withAnimation(.spring()){
-            resetImageState()
-            }
-            }
-            })
-            .gesture(
-            DragGesture()
-            .onChanged { value in
-            withAnimation(.linear(duration: 1)){
-            imageOffset = value.translation
-            }
-            }
-            .onEnded { _ in
-            if imageScale <= 1 {
-            resetImageState()
-            }
-        }
-    )})
-             
-                 
+        )
     .gesture(
         MagnificationGesture()
             .onChanged { value in
@@ -81,26 +78,24 @@ struct HomeView: View {
         }
         )
         }
-                 
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: {
-            withAnimation(.linear(duration:1)){
-                isAnimating = true
-            }
+        withAnimation(.linear(duration:1)){
+        isAnimating = true
+        }
 })
-                   
         .overlay(
         InfoPanelView(scale: imageScale, offset: imageOffset)
         .padding(.horizontal)
         .padding(.top,30)
         , alignment: .top
         )
-
         .overlay(
             Group{
                 HStack{
-                    NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true), label:{
-                        Image("rightarrow")
+                    
+                    NavigationLink(destination: OnboardingView().navigationBarBackButtonHidden(true), label:{
+                        Image("UNGUARDEDOne")
                             .resizable()
                             .frame(width: 20.0, height: 20.0)
                             .scaledToFit()
@@ -144,8 +139,8 @@ struct HomeView: View {
         .font(.system(size:36))
         }
                     
-        NavigationLink(destination: CryptoView().navigationBarBackButtonHidden(true), label:{
-                        Image("leftarrow")
+        NavigationLink(destination: HomeView().navigationBarBackButtonHidden(true), label:{
+                        Image("UNGUARDEDOne")
                             .resizable()
                             .frame(width: 20.0, height: 20.0)
                             .scaledToFit()
@@ -166,12 +161,11 @@ struct HomeView: View {
         }
         .navigationViewStyle(.stack)
         }
-    
 }
-                   
-struct HomeView_Previews: PreviewProvider{
+
+struct PinchView_Previews: PreviewProvider{
     static var previews: some View{
-        HomeView()
+        PinchView()
     }
 }
 

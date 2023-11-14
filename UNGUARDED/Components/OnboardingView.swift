@@ -21,7 +21,6 @@ var body: some View {
     ZStack {
         Color("ColorBlack")
             .ignoresSafeArea(.all, edges: .all)
-               
         VStack(spacing: 20) {
             Spacer()
             
@@ -30,8 +29,7 @@ var body: some View {
                     Color("ColorBlack")
                         .ignoresSafeArea(.all, edges: .all)
                 
-                
-                NavigationLink(destination:HomeView(), label:{
+    NavigationLink(destination: HomeView().navigationBarBackButtonHidden(true), label:{
                     Image("UNGUARDED")
                         .resizable()
                         .scaledToFit()
@@ -40,6 +38,7 @@ var body: some View {
                 })
             }
     }
+    .navigationViewStyle(.stack)
       ZStack{
               }
              }
@@ -48,11 +47,11 @@ var body: some View {
                isAnimating = true
            })
        }
+    
 }
         
 struct OnboardingView_Previews: PreviewProvider {
   static var previews: some View {
     OnboardingView()
-    
   }
 }

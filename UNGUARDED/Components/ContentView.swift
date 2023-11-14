@@ -2,21 +2,23 @@
 //  ContentView.swift
 //  UNGUARDED
 //
-//  Created by Salman Hasan on 11/5/23.
+//  Created by Salman Hasan on 11/8/23.
 //
 
 import SwiftUI
 
 struct ContentView: View {
-var columns=[GridItem(.adaptive(minimum:160),spacing: 20)]
-    var body: some View {
-        HStack{
-          ForEach(productList, id: \.id){ product in
-            ProductCard(product: product)
-          }
+@AppStorage("onboarding") var isOnboardingViewActive: Bool = true
+    
+var body: some View{
+    ZStack{
+        if isOnboardingViewActive{
+            OnboardingView()
+        }else{
+            HomeView()
         }
-        .padding()
-     }
+      }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -24,3 +26,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
