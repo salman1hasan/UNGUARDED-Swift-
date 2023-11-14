@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    
-    
     @State private var isAnimating: Bool = false
     @State private var imageScale: CGFloat = 1
     @State private var imageOffset: CGSize = .zero
@@ -101,9 +99,8 @@ struct HomeView: View {
         .overlay(
             Group{
                 HStack{
-                    
-                    NavigationLink(destination: PinchView().navigationBarBackButtonHidden(true), label:{
-                        Image("UNGUARDEDOne")
+                    NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true), label:{
+                        Image("rightarrow")
                             .resizable()
                             .frame(width: 20.0, height: 20.0)
                             .scaledToFit()
@@ -148,7 +145,7 @@ struct HomeView: View {
         }
                     
         NavigationLink(destination: CryptoView().navigationBarBackButtonHidden(true), label:{
-                        Image("UNGUARDEDOne")
+                        Image("leftarrow")
                             .resizable()
                             .frame(width: 20.0, height: 20.0)
                             .scaledToFit()
@@ -169,6 +166,7 @@ struct HomeView: View {
         }
         .navigationViewStyle(.stack)
         }
+    
 }
                    
 struct HomeView_Previews: PreviewProvider{

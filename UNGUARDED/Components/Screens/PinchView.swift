@@ -25,7 +25,6 @@ struct PinchView: View {
             
           ZStack{
             Color.clear
-              
             Image("UNGUARDEDSticker")
                 .resizable()
                 .aspectRatio(contentMode:.fit)

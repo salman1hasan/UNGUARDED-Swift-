@@ -21,7 +21,6 @@ var body: some View {
     ZStack {
         Color("ColorBlack")
             .ignoresSafeArea(.all, edges: .all)
-               
         VStack(spacing: 20) {
             Spacer()
             
@@ -30,7 +29,7 @@ var body: some View {
                     Color("ColorBlack")
                         .ignoresSafeArea(.all, edges: .all)
                 
-    NavigationLink(destination: PinchView().navigationBarBackButtonHidden(true), label:{
+    NavigationLink(destination: HomeView().navigationBarBackButtonHidden(true), label:{
                     Image("UNGUARDED")
                         .resizable()
                         .scaledToFit()
